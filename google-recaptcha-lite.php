@@ -3,7 +3,7 @@
 /**
  * Plugin Name: Google reCAPTCHA Lite
  * Plugin URI: http://wordpress.org/plugins/google-recaptcha-lite
- * Description: Integrates the Google reCAPTCHA v2 or v3 into the Comments Form, Login Form, Registration Form, etc.
+ * Description: Integrate the Google's reCAPTCHA v2 Checkbox or v3 into the forms and protect your site from bots, brute-force attacks, spam, and abuse.
  * Version: 1.0
  * Author: Malik Naik
  * Author URI: http://maliknaik.me/

@@ -11,8 +11,8 @@ defined('ABSPATH') || exit;
 /**
  * The abstract GoogleRecaptchaBase class.
  */
-abstract class GoogleRecaptchaBase {
-
+abstract class GoogleRecaptchaBase
+{
     /**
      * Hooks to attach the reCAPTCHA.
      *
@@ -159,7 +159,6 @@ abstract class GoogleRecaptchaBase {
             }
         }
     }
-
 
     /**
      * Verifies the CAPTCHA results.

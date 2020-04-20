@@ -8,7 +8,7 @@ Stable tag: 1.0
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.en.html
 
-Integrate your WordPress site with the Google's reCAPTCHA v2 Checkbox or v3 and protect your site from bots, brute-force attacks, spam, and abuse.
+Integrate the Google's reCAPTCHA Google's reCAPTCHA v2 Checkbox or v3 into the forms and protect your site from bots, brute-force attacks, spam, and abuse.
 
 == Description ==
 Google reCAPTCHA Lite protects your WordPress site from the bots, brute-force attacks, spam, and abuse. This plugin comes with the support of reCAPTCHA v3 and v2 Checkbox. The reCAPTCHA v3 allows users to navigate site without solving "I'm not a robot" challenges.
@@ -39,17 +39,19 @@ If you are using the Google reCAPTCHA v3 then the following actions list shows t
 Download and extract this plugin to the `/wp-content/plugins/` folder and activate the plugin from Plugins menu in WordPress Admin Dashboard.
 
 == Frequently Asked Questions ==
-= What is reCAPTCHA v3? =
+= What is Google reCAPTCHA v3? =
 The reCAPTCHA v3 is a new version of the Google's reCAPTCHA that allows users to navigate the sites without having to solve "I'm not a robot" challenge.
 = I'm getting "ERROR for site owner" error, what should I do? =
-Make sure that you are using the right Site key and Secret key of the reCAPTCHA version. For example, if you use site key, and secret key of the reCAPTCHA v2 then these keys won't work for reCAPTCHA v3.
+Make sure that you are using the right site key and secret key of the reCAPTCHA type. For example, if you use site key, and secret key of the reCAPTCHA v2 then these keys won't work for reCAPTCHA v3.
 
 == Screenshots ==
-1. Google reCAPTCHA Lite - Add new comment form
-2. Google reCAPTCHA Lite - New password form
-3. Google reCAPTCHA Lite - Registration form
-4. Google reCAPTCHA Lite - Login form
-5. Google reCAPTCHA Lite - Settings
+1. Google reCAPTCHA Lite - Settings
+2. Google reCAPTCHA Lite - Login form with reCAPTCHA v3
+3. Google reCAPTCHA Lite - Action name malformed error
+4. Google reCAPTCHA Lite - Buddy press signup form
+5. Google reCAPTCHA Lite - WooCommerce Login and Register Forms with Dark theme
+6. Google reCAPTCHA Lite - WooCommerce Checkout Form
+7. Google reCAPTCHA Lite - WooCommerce Captcha error on checkout
 
 == Changelog ==
 = 1.0 =

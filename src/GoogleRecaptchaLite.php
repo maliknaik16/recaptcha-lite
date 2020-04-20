@@ -90,6 +90,7 @@ class GoogleRecaptchaLite
 
         return $links;
     }
+
     /**
      * Adds the Google reCAPTCHA menu item into the options page.
      *
@@ -220,6 +221,7 @@ class GoogleRecaptchaLite
 
         return $form_settings;
     }
+
     /**
      * Renders the Theme option checkbox.
      *
