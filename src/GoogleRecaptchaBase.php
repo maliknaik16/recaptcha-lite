@@ -21,7 +21,6 @@ abstract class GoogleRecaptchaBase {
     protected $recaptcha_locations = [
         'login_form',
         'register_form',
-        'retrieve_password',
         'lostpassword_form',
         'resetpass_form',
         'comment_form_after_fields',
@@ -118,27 +117,55 @@ abstract class GoogleRecaptchaBase {
     {
         // Fire actions to render the captcha.
         foreach($this->recaptcha_locations as $hook) {
-            add_action($hook, [$this, 'renderCaptcha']);
+            $option_name = sprintf("grl_%s", $hook);
+            if (get_option($option_name) == '1') {
+                add_action($hook, [$this, 'renderCaptcha']);
+            }
         }
 
         // The hooks list that are fired when the form is in verification.
         $verification_hooks = [
-            'preprocess_comment',
-            'registration_errors',
-            'lostpassword_post',
-            'resetpass_post',
-            'woocommerce_register_post',
-            'wp_authenticate_user'
+            'preprocess_comment' => 'grl_comment_form_after_fields',
+            'registration_errors' => 'grl_register_form',
+            'lostpassword_post' => 'grl_lostpassword_form',
+            'resetpass_post' => 'grl_resetpass_form',
+            'woocommerce_register_post' => 'grl_woocommerce_forms',
+            'wp_authenticate_user' => 'grl_login_form',
+            'bp_signup_validate' => 'grl_bp_after_signup_profile_fields',
         ];
 
         // Fire actions to verfiy the captcha.
-        foreach($verification_hooks as $hook) {
+        foreach($verification_hooks as $hook => $option_name) {
+            if (get_option($option_name) != '1') {
+                continue;
+            }
+
             if (substr($hook, 0, 11) === 'woocommerce') {
                 add_action($hook, [$this, 'wooVerifyCaptcha'], 10, 3);
-            } else {
+            } elseif (substr($hook, 0, 3) === 'bp_') {
+                add_action($hook, [$this, 'bpVerifyCaptcha']);
+            }else {
                 add_action($hook, [$this, 'verifyCaptcha']);
             }
         }
+    }
+
+    /**
+     * Verifies the CAPTCHA results.
+     *
+     * @return void
+     */
+    public function bpVerifyCaptcha()
+    {
+        global $bp;
+
+        // Get the error message.
+        $message = $this->getCaptchaVerificationMessage();
+
+        if (!empty($message)) {
+            $bp->signup->errors['grl_recaptcha'] = $message;
+        }
+
     }
 
     /**
@@ -173,7 +200,12 @@ abstract class GoogleRecaptchaBase {
         // Get the error message.
         $message = $this->getCaptchaVerificationMessage();
 
-        if (!empty($message)) {
+        if(!empty($message) && is_array($input)) {
+            wp_die(new \WP_Error('grl_recaptcha', $message), 'reCAPTCHA Error', [
+                'response' => 403,
+                'back_link' => 1,
+            ]);
+        } elseif (!empty($message)) {
             return new \WP_Error('grl_recaptcha', $message);
         }
 
@@ -229,6 +261,8 @@ abstract class GoogleRecaptchaBase {
                 return $this->generateErrorMessage($error_code);
             }
 
+        } else {
+            return $this->generateErrorMessage('');
         }
 
         return '';
@@ -285,7 +319,7 @@ abstract class GoogleRecaptchaBase {
                 $error_message = 'The action name has been malformed.';
                 break;
             default:
-                $error_message = 'reCAPTCHA verification failed.';
+                $error_message = 'Unknown error.';
         }
 
         return $error_message;

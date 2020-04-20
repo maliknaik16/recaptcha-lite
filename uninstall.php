@@ -15,15 +15,11 @@ $plugin_options = [
     'recaptcha_version',
     'login_form',
     'register_form',
-    'retrieve_password',
     'lostpassword_form',
     'resetpass_form',
     'comment_form_after_fields',
     'bp_after_signup_profile_fields',
-    'woocommerce_register_form',
-    'woocommerce_lostpassword_form',
-    'woocommerce_after_order_notes',
-    'woocommerce_login_form',
+    'woocommerce_forms',
 ];
 
 // Delete all the saved options.

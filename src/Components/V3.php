@@ -24,7 +24,6 @@ class V3 extends GoogleRecaptchaBase
     protected $hook_to_action_name = [
         'login_form' => 'login-form',
         'register_form' => 'register-form',
-        'retrieve_password' => 'get-password',
         'lostpassword_form' => 'lost-password-form',
         'resetpass_form' => 'reset-password-form',
         'comment_form_after_fields' => 'comment-form',

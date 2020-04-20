@@ -15,6 +15,13 @@ defined('ABSPATH') || exit;
 class GoogleRecaptchaLite
 {
     /**
+     * Stores whether the WooCommerce plugin is active or not.
+     *
+     * @var bool|null
+     */
+    private $_woo_active = null;
+
+    /**
      * The checkboxes for the reCAPTCHA locations.
      *
      * @var array
@@ -22,18 +29,9 @@ class GoogleRecaptchaLite
     protected $checkboxes = [
         'login_form' => 'Login Form',
         'register_form' => 'Registration Form',
-        'retrieve_password' => 'Retrieve Password',
         'lostpassword_form' => 'Lost Password Form',
         'resetpass_form' => 'Reset Password Form',
         'comment_form_after_fields' => 'Comment Form',
-        'bp_after_signup_profile_fields' => 'Buddy Press Signup',
-
-        // 'login_form' => 'Login Form',
-        // 'registration_form' => 'Registration Form',
-        // 'lost_password_form' => 'Lost password Form',
-        // 'comment_form' => 'Comments Form',
-        // 'reset_password_form' => 'Reset Password Form',
-        // 'woocommerce_login_form' => 'WooCommerce Login Form',
     ];
 
     /**
@@ -44,14 +42,35 @@ class GoogleRecaptchaLite
         add_action('admin_init', [$this, 'registerSettingsForm']);
         add_filter('plugin_action_links_google-recaptcha-lite/google-recaptcha-lite.php', [$this, 'addSettingsLink']);
 
-        if (in_array('woocommerce/woocommerce.php', (array)get_option('active_plugins', []))) {
+        if ($this->isBuddyPressActive()) {
             $this->checkboxes = array_merge($this->checkboxes, [
-                'woocommerce_register_form' => 'WooCommerce Registration Form',
-                'woocommerce_lostpassword_form' => 'WooCommerce Lost Password Form',
-                'woocommerce_after_order_notes' => 'WooCommerce Order Checkout Form',
-                'woocommerce_login_form' => 'WooCommerce Login Form',
+                'bp_after_signup_profile_fields' => 'Buddy Press Signup Form',
             ]);
         }
+    }
+
+    /**
+     * Returns whether the WooCommerce plugin is enabled or not.
+     *
+     * @return bool
+     */
+    public function isWooCommerceActive()
+    {
+        if (is_null($this->_woo_active)) {
+            $this->_woo_active = in_array('woocommerce/woocommerce.php', (array)get_option('active_plugins', []));
+        }
+
+        return $this->_woo_active;
+    }
+
+    /**
+     * Returns whether the BuddyPress plugin is enabled or not.
+     *
+     * @return bool
+     */
+    public function isBuddyPressActive()
+    {
+        return function_exists('bp_is_active');
     }
 
     /**
@@ -176,12 +195,29 @@ class GoogleRecaptchaLite
         register_setting('grl-options', 'grl_recaptcha_version');
         register_setting('grl-options', 'grl_theme');
 
-        foreach($this->checkboxes as $key => $value) {
+        $form_settings = $this->getFilteredFormSettings();
+
+        foreach ($form_settings as $key => $value) {
             register_setting('grl-options', 'grl_' . $key);
         }
 
     }
 
+    /**
+     * Returns the filtered form settings.
+     *
+     * @return array
+     */
+    public function getFilteredFormSettings()
+    {
+        $form_settings = array_filter($this->checkboxes, function($key) {
+            return substr($key, 0, 11) !== 'woocommerce';
+        }, ARRAY_FILTER_USE_KEY);
+
+        $form_settings['woocommerce_forms'] = 'WooCommerce Forms';
+
+        return $form_settings;
+    }
     /**
      * Renders the Theme option checkbox.
      *
@@ -245,7 +281,10 @@ class GoogleRecaptchaLite
     public function renderRecaptchaLocations()
     {
         $output = "<fieldset>";
-        foreach($this->checkboxes as $key => $value) {
+
+        // Get the filtered form settings.
+        $form_settings = $this->getFilteredFormSettings();
+        foreach($form_settings as $key => $value) {
             $option = 'grl_' . $key;
 
             // Get attributes for the checkbox.
@@ -307,5 +346,11 @@ class GoogleRecaptchaLite
      *
      * @return void
      */
-    public function settingsDescription() {}
+    public function settingsDescription() {
+        // echo "<pre>";
+        // print_r(array_filter(get_registered_settings(), function($key) {
+        //     return substr($key, 0, 4) === 'grl_';
+        // }, ARRAY_FILTER_USE_KEY));
+        // echo "</pre>";
+    }
 }
