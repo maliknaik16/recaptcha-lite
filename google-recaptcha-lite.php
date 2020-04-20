@@ -22,6 +22,6 @@ use GoogleRecaptchaLite\GoogleRecaptchaLite;
 use GoogleRecaptchaLite\Factory\GoogleRecaptchaFactory;
 
 new GoogleRecaptchaLite;
-$component = GoogleRecaptchaFactory::create(get_option('grl_recaptcha_version'));
+$component = GoogleRecaptchaFactory::create(get_option('grl_recaptcha_version', ''));
 $component->attach();
 
