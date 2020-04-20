@@ -25,7 +25,6 @@ abstract class GoogleRecaptchaBase {
         'resetpass_form',
         'comment_form_after_fields',
         'woocommerce_register_form',
-        'woocommerce_lostpassword_form',
         'woocommerce_after_order_notes',
         'woocommerce_login_form',
         'bp_after_signup_profile_fields',
@@ -117,7 +116,13 @@ abstract class GoogleRecaptchaBase {
     {
         // Fire actions to render the captcha.
         foreach($this->recaptcha_locations as $hook) {
-            $option_name = sprintf("grl_%s", $hook);
+
+            if (substr($hook, 0, 11) === 'woocommerce') {
+                $option_name = 'grl_woocommerce_forms';
+            } else {
+                $option_name = sprintf("grl_%s", $hook);
+            }
+
             if (get_option($option_name) == '1') {
                 add_action($hook, [$this, 'renderCaptcha']);
             }
@@ -130,6 +135,7 @@ abstract class GoogleRecaptchaBase {
             'lostpassword_post' => 'grl_lostpassword_form',
             'resetpass_post' => 'grl_resetpass_form',
             'woocommerce_register_post' => 'grl_woocommerce_forms',
+            'woocommerce_checkout_process' => 'grl_woocommerce_forms',
             'wp_authenticate_user' => 'grl_login_form',
             'bp_signup_validate' => 'grl_bp_after_signup_profile_fields',
         ];
@@ -141,13 +147,34 @@ abstract class GoogleRecaptchaBase {
             }
 
             if (substr($hook, 0, 11) === 'woocommerce') {
-                add_action($hook, [$this, 'wooVerifyCaptcha'], 10, 3);
+                if ($hook === 'woocommerce_checkout_process') {
+                    add_action($hook, [$this, 'verifyOnCheckout']);
+                } else {
+                    add_action($hook, [$this, 'wooVerifyCaptcha'], 10, 3);
+                }
             } elseif (substr($hook, 0, 3) === 'bp_') {
                 add_action($hook, [$this, 'bpVerifyCaptcha']);
             }else {
                 add_action($hook, [$this, 'verifyCaptcha']);
             }
         }
+    }
+
+
+    /**
+     * Verifies the CAPTCHA results.
+     *
+     * @return void
+     */
+    public function verifyOnCheckout()
+    {
+        // Get the error message.
+        $message = $this->getCaptchaVerificationMessage();
+
+        if (!empty($message)) {
+            wc_add_notice( $message, 'error' );
+        }
+
     }
 
     /**
@@ -157,13 +184,17 @@ abstract class GoogleRecaptchaBase {
      */
     public function bpVerifyCaptcha()
     {
-        global $bp;
+        //global $bp;
 
         // Get the error message.
         $message = $this->getCaptchaVerificationMessage();
 
         if (!empty($message)) {
-            $bp->signup->errors['grl_recaptcha'] = $message;
+            wp_die(new \WP_Error('grl_recaptcha', $message), 'reCAPTCHA Error', [
+                'response' => 403,
+                'back_link' => 1,
+            ]);
+            //$bp->signup->errors['grl-recaptcha-1'] = $message;
         }
 
     }

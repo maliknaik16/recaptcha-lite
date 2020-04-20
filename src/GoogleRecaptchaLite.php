@@ -214,7 +214,9 @@ class GoogleRecaptchaLite
             return substr($key, 0, 11) !== 'woocommerce';
         }, ARRAY_FILTER_USE_KEY);
 
-        $form_settings['woocommerce_forms'] = 'WooCommerce Forms';
+        if ($this->isWooCommerceActive()) {
+            $form_settings['woocommerce_forms'] = 'WooCommerce Forms (Login, Register, and Checkout)';
+        }
 
         return $form_settings;
     }
@@ -348,9 +350,10 @@ class GoogleRecaptchaLite
      */
     public function settingsDescription() {
         // echo "<pre>";
-        // print_r(array_filter(get_registered_settings(), function($key) {
-        //     return substr($key, 0, 4) === 'grl_';
-        // }, ARRAY_FILTER_USE_KEY));
+        // print_r((array)get_option('active_plugins', []));
+        // // print_r(array_filter(get_registered_settings(), function($key) {
+        // //     return substr($key, 0, 4) === 'grl_';
+        // // }, ARRAY_FILTER_USE_KEY));
         // echo "</pre>";
     }
 }

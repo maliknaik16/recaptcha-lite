@@ -22,16 +22,15 @@ class V3 extends GoogleRecaptchaBase
      * @var array
      */
     protected $hook_to_action_name = [
-        'login_form' => 'login-form',
-        'register_form' => 'register-form',
-        'lostpassword_form' => 'lost-password-form',
-        'resetpass_form' => 'reset-password-form',
-        'comment_form_after_fields' => 'comment-form',
-        'woocommerce_register_form' => 'woo-register-form',
-        'woocommerce_lostpassword_form' => 'woo-lost-password-form',
-        'woocommerce_after_order_notes' => 'woo-order-checkout',
-        'woocommerce_login_form' => 'woo-login-form',
-        'bp_after_signup_profile_fields' => 'buddypress-signup',
+        'login_form' => 'login_form',
+        'register_form' => 'register_form',
+        'lostpassword_form' => 'lost_password_form',
+        'resetpass_form' => 'reset_password_form',
+        'comment_form_after_fields' => 'comment_form',
+        'woocommerce_register_form' => 'woo_register_form',
+        'woocommerce_after_order_notes' => 'woo_order_checkout',
+        'woocommerce_login_form' => 'woo_login_form',
+        'bp_after_signup_profile_fields' => 'buddypress_signup',
     ];
 
     /**
@@ -115,8 +114,8 @@ class V3 extends GoogleRecaptchaBase
      */
     public function renderCaptcha()
     {
-        echo sprintf('<input type="hidden" value="%s" id="g-recaptcha-action" name="g-recaptcha-action">', $this->getActionNameFromHook(current_action()));
-        echo '<input type="hidden" value="token" id="g-recaptcha-response" name="g-recaptcha-response"/>';
+        echo sprintf('<input type="hidden" value="%s" class="g-recaptcha-action" name="g-recaptcha-action">', $this->getActionNameFromHook(current_action()));
+        echo '<input type="hidden" value="token" class="g-recaptcha-response" name="g-recaptcha-response"/>';
     }
 }
 

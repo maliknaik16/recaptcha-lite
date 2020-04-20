@@ -11,13 +11,12 @@ License URI: https://www.gnu.org/licenses/gpl-3.0.en.html
 Integrate your WordPress site with the Google's reCAPTCHA v2 Checkbox or v3 and protect your site from bots, brute-force attacks, spam, and abuse.
 
 == Description ==
-Google reCAPTCHA Lite protects your WordPress site from the bots, brute-force attacks, spam, and abuse. This plugin comes with the support of reCAPTCHA v3 and v2 Checkbox. The reCAPTCHA v3 allows users to navigate site without their interaction.
+Google reCAPTCHA Lite protects your WordPress site from the bots, brute-force attacks, spam, and abuse. This plugin comes with the support of reCAPTCHA v3 and v2 Checkbox. The reCAPTCHA v3 allows users to navigate site without solving "I'm not a robot" challenges.
 
 You can integrate the Google's reCAPTCHA in the following forms:
 
 * Login Form
 * Registration Form
-* Retrieve Password
 * Lost Password Form
 * Reset Password Form
 * Comment Form
@@ -26,17 +25,15 @@ You can integrate the Google's reCAPTCHA in the following forms:
 
 If you are using the Google reCAPTCHA v3 then the following actions list shows the action names that will be used to hit the [Google's reCAPTCHA API endpoint](https://developers.google.com/recaptcha/docs/verify#api_request) during validation. For more information on actions checkout out the [official documentation](https://developers.google.com/recaptcha/docs/v3#actions).
 
-* login-form
-* register-form
-* get-password
-* lost-password-form
-* reset-password-form
-* comment-form
-* woo-register-form
-* woo-lost-password-form
-* woo-order-checkout
-* woo-login-form
-* buddypress-signup
+* login_form
+* register_form
+* lost_password_form
+* reset_password_form
+* comment_form
+* woo_register_form
+* woo_order_checkout
+* woo_login_form
+* buddypress_signup
 
 == Installation ==
 Download and extract this plugin to the `/wp-content/plugins/` folder and activate the plugin from Plugins menu in WordPress Admin Dashboard.
