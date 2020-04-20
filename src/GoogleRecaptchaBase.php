@@ -259,10 +259,18 @@ abstract class GoogleRecaptchaBase {
             // Get the reCAPTCHA response.
             $recaptcha_response = $_POST['g-recaptcha-response'];
 
-            $msg = do_action('grl_recaptcha_before_verification');
+            // Verify action name when the reCAPTCHA type is v3.
+            if (isset($_POST['g-recaptcha-action']) && $this->recaptcha_version === 'v3') {
+                $action_name = $_POST['g-recaptcha-action'];
+                $error_code = '';
 
-            if (!empty($msg)) {
-                return $msg;
+                if (!$this->isActionNameValid($action_name)) {
+                    $error_code = 'malformed-action-name';
+                }
+
+                if (!empty($error_code)) {
+                    return $this->generateErrorMessage($error_code);
+                }
             }
 
             // Get the secret key.

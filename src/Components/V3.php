@@ -38,8 +38,10 @@ class V3 extends GoogleRecaptchaBase
      */
     public function __construct()
     {
+        add_action('wp_loaded', function () {
+            add_action('grl_recaptcha_before_verification', [$this, 'verifyActionName']);
+        });
         parent::__construct();
-        add_action('grl_recaptcha_before_verification', [$this, 'verifyActionName']);
     }
 
     /**
@@ -52,29 +54,6 @@ class V3 extends GoogleRecaptchaBase
 
         // Enqueue main styles and scripts of the Google reCAPTCHA.
         parent::enqueueStylesAndScripts($query_string);
-    }
-
-    /**
-     * Fires when the form is submitted.
-     *
-     * @return string
-     */
-    public function verifyActionName()
-    {
-        if (isset($_POST['g-recaptcha-action']) && $this->recaptcha_version === 'v3') {
-            $action_name = $_POST['g-recaptcha-action'];
-            $error_code = '';
-
-            if (!$this->isActionNameValid($action_name)) {
-                $error_code = 'malformed-action-name';
-            }
-
-            if (!empty($error_code)) {
-                return $this->generateErrorMessage($error_code);
-            }
-        }
-
-        return '';
     }
 
     /**

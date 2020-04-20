@@ -44,6 +44,13 @@ The reCAPTCHA v3 is a new version of the Google's reCAPTCHA that allows users to
 = I'm getting "ERROR for site owner" error, what should I do? =
 Make sure that you are using the right Site key and Secret key of the reCAPTCHA version. For example, if you use site key, and secret key of the reCAPTCHA v2 then these keys won't work for reCAPTCHA v3.
 
+== Screenshots ==
+1. Google reCAPTCHA Lite - Add new comment form
+2. Google reCAPTCHA Lite - New password form
+3. Google reCAPTCHA Lite - Registration form
+4. Google reCAPTCHA Lite - Login form
+5. Google reCAPTCHA Lite - Settings
+
 == Changelog ==
 = 1.0 =
 * First Release

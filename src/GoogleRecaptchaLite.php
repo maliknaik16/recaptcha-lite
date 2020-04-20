@@ -137,16 +137,16 @@ class GoogleRecaptchaLite
         // Add the settings section to the `grl-options` page.
         add_settings_section(
             'grl-recaptcha-settings',
-            '',//__('Google reCAPTCHA API Keys', 'google-recaptcha-lite'),
+            'reCAPTCHA Keys and other settings',
             [$this, 'settingsDescription'],
             'grl-options'
         );
 
-        // Add the reCAPTCHA version checkbox to the `grl-recaptcha-settings`
+        // Add the reCAPTCHA type checkbox to the `grl-recaptcha-settings`
         // section.
         add_settings_field(
             'grl_recaptcha_version',
-            'reCAPTCHA version',
+            'reCAPTCHA type',
             [$this, 'renderCaptchaVersion'],
             'grl-options',
             'grl-recaptcha-settings'
@@ -348,12 +348,8 @@ class GoogleRecaptchaLite
      *
      * @return void
      */
-    public function settingsDescription() {
-        // echo "<pre>";
-        // print_r((array)get_option('active_plugins', []));
-        // // print_r(array_filter(get_registered_settings(), function($key) {
-        // //     return substr($key, 0, 4) === 'grl_';
-        // // }, ARRAY_FILTER_USE_KEY));
-        // echo "</pre>";
+    public function settingsDescription()
+    {
+        echo 'Navigate to <a href="https://www.google.com/recaptcha/admin" target="_blank">Google\'s admin console</a> and register your site. Then, copy and paste the site key and secret key into the respective fields below. Also, make sure that you are getting the keys for the right reCAPTCHA type.';
     }
 }
