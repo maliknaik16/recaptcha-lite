@@ -2,17 +2,17 @@
 
 /**
  * @file
- * Contains GoogleRecaptchaLite\GoogleRecaptchaLite.
+ * Contains RecaptchaLite\RecaptchaLite.
  */
-namespace GoogleRecaptchaLite;
+namespace RecaptchaLite;
 
 defined('ABSPATH') || exit;
 
 /**
  * This class is responsible for adding a new menu item in the dashboard with
- * the title 'Google reCAPTCHA' and also registers and renders the fields.
+ * the title 'reCAPTCHA Lite' and also registers and renders the fields.
  */
-class GoogleRecaptchaLite
+class RecaptchaLite
 {
     /**
      * Stores whether the WooCommerce plugin is active or not.
@@ -40,7 +40,7 @@ class GoogleRecaptchaLite
     public function __construct() {
         add_action('admin_menu', [$this, 'addOptionsPage']);
         add_action('admin_init', [$this, 'registerSettingsForm']);
-        add_filter('plugin_action_links_google-recaptcha-lite/google-recaptcha-lite.php', [$this, 'addSettingsLink']);
+        add_filter('plugin_action_links_recaptcha-lite/recaptcha-lite.php', [$this, 'addSettingsLink']);
 
         if ($this->isBuddyPressActive()) {
             $this->checkboxes = array_merge($this->checkboxes, [
@@ -92,15 +92,15 @@ class GoogleRecaptchaLite
     }
 
     /**
-     * Adds the Google reCAPTCHA menu item into the options page.
+     * Adds the reCAPTCHA Lite menu item into the options page.
      *
      * @return void
      */
     public function addOptionsPage()
     {
         add_options_page(
-            'Google reCAPTCHA Settings',
-            'Google reCAPTCHA',
+            'reCAPTCHA Lite Settings',
+            'reCAPTCHA Lite',
             'manage_options',
             'grl-options',
             [$this, 'renderOptionsPage']
@@ -108,7 +108,7 @@ class GoogleRecaptchaLite
     }
 
     /**
-     * Renders the Google reCAPTCHA settings.
+     * Renders the reCAPTCHA Lite settings.
      *
      * @return void
      */
@@ -116,7 +116,7 @@ class GoogleRecaptchaLite
     {
         $output = '<div class="wrap">';
         $output .= '<form action="options.php" method="post">';
-        $output .= '<h1>Google reCAPTCHA Settings</h1>';
+        $output .= '<h1>reCAPTCHA Lite Settings</h1>';
 
         echo $output;
 

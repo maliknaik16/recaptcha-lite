@@ -2,19 +2,19 @@
 
 /**
  * @file
- * Contains GoogleRecaptchaLite\Factory\GoogleRecaptchaFactory.
+ * Contains RecaptchaLite\Factory\RecaptchaFactory.
  */
-namespace GoogleRecaptchaLite\Factory;
+namespace RecaptchaLite\Factory;
 
 defined('ABSPATH') || exit;
 
-use GoogleRecaptchaLite\Components\V2Checkbox;
-use GoogleRecaptchaLite\Components\V3;
+use RecaptchaLite\Components\V2Checkbox;
+use RecaptchaLite\Components\V3;
 
 /**
  * This class is responsible for creating the reCAPTCHA component.
  */
-class GoogleRecaptchaFactory
+class RecaptchaFactory
 {
     /**
      * Mapping from reCAPTCHA type to Class name.
@@ -33,7 +33,7 @@ class GoogleRecaptchaFactory
      *
      * @param string $type
      *
-     * @return GoogleRecaptchaLite\GoogleRecaptchaBase
+     * @return RecaptchaLite\RecaptchaBase
      */
     public static function create($type = '')
     {

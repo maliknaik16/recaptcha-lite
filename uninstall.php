@@ -7,7 +7,7 @@ if (!defined('WP_UNINSTALL_PLUGIN') || !WP_UNINSTALL_PLUGIN) {
     exit;
 }
 
-// Google reCAPTCHA Lite plugin options list.
+// reCAPTCHA Lite plugin options list.
 $plugin_options = [
     'site_key',
     'secret_key',

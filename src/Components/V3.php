@@ -2,19 +2,19 @@
 
 /**
  * @file
- * Contains GoogleRecaptchaLite\Components\V3.
+ * Contains RecaptchaLite\Components\V3.
  */
-namespace GoogleRecaptchaLite\Components;
+namespace RecaptchaLite\Components;
 
 defined('ABSPATH') || exit;
 
-use GoogleRecaptchaLite\GoogleRecaptchaBase;
+use RecaptchaLite\RecaptchaBase;
 
 /**
  * The Google reCAPTCHA version 3 component. This class is responsible for
  * integrating the Google reCAPTCHA v3 on the front end of the website.
  */
-class V3 extends GoogleRecaptchaBase
+class V3 extends RecaptchaBase
 {
     /**
      * Mapping of hook name to the action name.

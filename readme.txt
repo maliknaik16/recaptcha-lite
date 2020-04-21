@@ -1,4 +1,4 @@
-=== Google reCAPTCHA Lite ===
+=== reCAPTCHA Lite ===
 Contributors: maliknaik16
 Tags: google, bots, protect, secure, captcha, v3, woocommerce, v2, form, login, register, reset, lost, buddypress, lite, block, no-interaction
 Requires at least: 4.4
@@ -11,7 +11,7 @@ License URI: https://www.gnu.org/licenses/gpl-3.0.en.html
 Integrate the Google's reCAPTCHA Google's reCAPTCHA v2 Checkbox or v3 into the forms and protect your site from bots, brute-force attacks, spam, and abuse.
 
 == Description ==
-Google reCAPTCHA Lite protects your WordPress site from the bots, brute-force attacks, spam, and abuse. This plugin comes with the support of reCAPTCHA v3 and v2 Checkbox. The reCAPTCHA v3 allows users to navigate site without solving "I'm not a robot" challenges.
+The reCAPTCHA Lite protects your WordPress site from the bots, brute-force attacks, spam, and abuse. This plugin comes with the support of reCAPTCHA v3 and v2 Checkbox. The reCAPTCHA v3 allows users to navigate site without solving "I'm not a robot" challenges.
 
 You can integrate the Google's reCAPTCHA in the following forms:
 
@@ -45,13 +45,13 @@ The reCAPTCHA v3 is a new version of the Google's reCAPTCHA that allows users to
 Make sure that you are using the right site key and secret key of the reCAPTCHA type. For example, if you use site key, and secret key of the reCAPTCHA v2 then these keys won't work for reCAPTCHA v3.
 
 == Screenshots ==
-1. Google reCAPTCHA Lite - Settings
-2. Google reCAPTCHA Lite - Login form with reCAPTCHA v3
-3. Google reCAPTCHA Lite - Action name malformed error
-4. Google reCAPTCHA Lite - Buddy press signup form
-5. Google reCAPTCHA Lite - WooCommerce Login and Register Forms with Dark theme
-6. Google reCAPTCHA Lite - WooCommerce Checkout Form
-7. Google reCAPTCHA Lite - WooCommerce Captcha error on checkout
+1. reCAPTCHA Lite - Settings
+2. reCAPTCHA Lite - Login form with reCAPTCHA v3
+3. reCAPTCHA Lite - Action name malformed error
+4. reCAPTCHA Lite - Buddy press signup form
+5. reCAPTCHA Lite - WooCommerce Login and Register Forms with Dark theme
+6. reCAPTCHA Lite - WooCommerce Checkout Form
+7. reCAPTCHA Lite - WooCommerce Captcha error on checkout
 
 == Changelog ==
 = 1.0 =

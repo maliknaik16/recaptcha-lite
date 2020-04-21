@@ -2,16 +2,16 @@
 
 /**
  * @file
- * Contains GoogleRecaptchaLite\GoogleRecaptchaBase.
+ * Contains RecaptchaLite\RecaptchaBase.
  */
-namespace GoogleRecaptchaLite;
+namespace RecaptchaLite;
 
 defined('ABSPATH') || exit;
 
 /**
- * The abstract GoogleRecaptchaBase class.
+ * The abstract RecaptchaBase class.
  */
-abstract class GoogleRecaptchaBase
+abstract class RecaptchaBase
 {
     /**
      * Hooks to attach the reCAPTCHA.

@@ -2,19 +2,19 @@
 
 /**
  * @file
- * Contains GoogleRecaptchaLite\Components\V2Checkbox.
+ * Contains RecaptchaLite\Components\V2Checkbox.
  */
-namespace GoogleRecaptchaLite\Components;
+namespace RecaptchaLite\Components;
 
 defined('ABSPATH') || exit;
 
-use GoogleRecaptchaLite\GoogleRecaptchaBase;
+use RecaptchaLite\RecaptchaBase;
 
 /**
  * The Google reCAPTCHA version 2 checkbox component. This class is responsible
  * for integrating the Google reCAPTCHA v2 Checkbox on the front end of the website.
  */
-class V2Checkbox extends GoogleRecaptchaBase
+class V2Checkbox extends RecaptchaBase
 {
     /**
      * {@inheritdoc}
