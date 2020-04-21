@@ -256,11 +256,11 @@ abstract class RecaptchaBase
 
         if ($request_method == 'post' && isset($_POST['g-recaptcha-response'])) {
             // Get the reCAPTCHA response.
-            $recaptcha_response = $_POST['g-recaptcha-response'];
+            $recaptcha_response = filter_input(INPUT_POST, 'g-recaptcha-response', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
             // Verify action name when the reCAPTCHA type is v3.
             if (isset($_POST['g-recaptcha-action']) && $this->recaptcha_version === 'v3') {
-                $action_name = $_POST['g-recaptcha-action'];
+                $action_name = filter_input(INPUT_POST, 'g-recaptcha-action', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
                 $error_code = '';
 
                 if (!$this->isActionNameValid($action_name)) {

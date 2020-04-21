@@ -11,6 +11,8 @@ defined('ABSPATH') || exit;
 /**
  * This class is responsible for adding a new menu item in the dashboard with
  * the title 'reCAPTCHA Lite' and also registers and renders the fields.
+ *
+ * Note: 'grl' here stands for 'google recaptcha lite'
  */
 class RecaptchaLite
 {
